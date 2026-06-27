@@ -1,21 +1,27 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Plus_Jakarta_Sans, Outfit, Space_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 
-const inter = Inter({
-  variable: "--font-inter",
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+});
+
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
+  weight: ["400", "700"],
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Nikhil Gorremuchu | Creative Developer",
-  description: "Futuristic portfolio of Nikhil Gorremuchu, Software Application Developer.",
+  title: "Nikhil Gorremuchu | Developer Portfolio",
+  description: "Portfolio of Nikhil Gorremuchu, computer science student and software developer.",
 };
 
 export default function RootLayout({
@@ -26,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} antialiased bg-[var(--background)] text-[var(--foreground)]`}
+      className={`${plusJakarta.variable} ${outfit.variable} ${spaceMono.variable} antialiased bg-[var(--background)] text-[var(--foreground)]`}
     >
       <body className="min-h-screen flex flex-col font-sans overflow-x-hidden">
         <SmoothScroll>{children}</SmoothScroll>
@@ -34,3 +40,7 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+
+

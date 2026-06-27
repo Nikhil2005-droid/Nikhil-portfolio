@@ -1,25 +1,79 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050505;
-  --foreground: #F4F4F5;
-  --accent-acid: #CCFF00; /* Acid Chartreuse */
-  --accent-muted: #555555;
+  --background: #f6f4fa; /* Lavender Chalk */
+  --foreground: #332d3a; /* Deep Plum Charcoal */
+  --accent: #ab92bf; /* Amethyst */
+  --accent-muted: #8c7d9e; /* Muted Plum-Purple */
+  --border-color: transparent; /* No borders or lines */
+  --card-bg: rgba(171, 146, 191, 0.07); /* Soft Amethyst tint */
+  --card-glow: rgba(171, 146, 191, 0.25); /* Amethyst glow */
+  
+  --font-sans: var(--font-plus-jakarta), sans-serif;
+  --font-display: var(--font-outfit), sans-serif;
+  --font-mono: var(--font-space-mono), monospace;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-accent-acid: var(--accent-acid);
+  --color-accent: var(--accent);
   --color-accent-muted: var(--accent-muted);
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-space-grotesk);
+  --color-border-color: var(--border-color);
+  --color-card-bg: var(--card-bg);
+  --color-card-glow: var(--card-glow);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-family: var(--font-sans);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Premium card with Swiss sharp corners and no borders/lines */
+.premium-card {
+  background-color: var(--card-bg);
+  border: none;
+  border-radius: 0px; /* Sharp Swiss layout geometry */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.premium-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7), 
+              0 0 25px var(--card-glow);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}
+
+/* Text Selection styling */
+::selection {
+  background-color: var(--accent);
+  color: var(--background);
 }
 
 /* Lenis Scroll Styles */
@@ -43,8 +97,4 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
-}
+

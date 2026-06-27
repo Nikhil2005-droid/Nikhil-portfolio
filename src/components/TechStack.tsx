@@ -1,52 +1,67 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import React from "react";
+import { FaNodeJs, FaJava } from "react-icons/fa";
+import { SiAndroid, SiFlutter, SiNextdotjs, SiExpress, SiDart, SiKotlin, SiMongodb, SiMysql, SiJavascript, SiTypescript, SiReact, SiFirebase } from "react-icons/si";
+import { AsciiWave, AsciiTextScramble } from "./AsciiEffects";
 
-const skills = [
-  "FLUTTER", "NODE.JS", "EXPRESS.JS", "MONGODB", "FIREBASE", 
-  "ANDROID", "JAVASCRIPT", "REACT", "NEXT.JS", "TAILWIND"
+const technologies = [
+  { name: "Android", icon: SiAndroid },
+  { name: "Flutter", icon: SiFlutter },
+  { name: "React", icon: SiReact },
+  { name: "Next.js", icon: SiNextdotjs },
+  { name: "Node.js", icon: FaNodeJs },
+  { name: "Express", icon: SiExpress },
+  { name: "TypeScript", icon: SiTypescript },
+  { name: "JavaScript", icon: SiJavascript },
+  { name: "Kotlin", icon: SiKotlin },
+  { name: "Java", icon: FaJava },
+  { name: "Dart", icon: SiDart },
+  { name: "MongoDB", icon: SiMongodb },
+  { name: "Firebase", icon: SiFirebase },
+  { name: "MySQL", icon: SiMysql },
 ];
-
-function MarqueeItem({ children, direction = 1 }: { children: React.ReactNode, direction?: number }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const initialX = direction === 1 ? 0 : -3000;
-  const finalX = direction === 1 ? -3000 : 0;
-  const x = useTransform(scrollYProgress, [0, 1], [initialX, finalX]);
-
-  return (
-    <div ref={containerRef} className="flex whitespace-nowrap overflow-hidden">
-      <motion.div style={{ x }} className="flex gap-8 font-display text-7xl md:text-[9rem] font-bold text-[var(--foreground)] uppercase leading-none">
-        {[...Array(20)].map((_, i) => (
-          <span key={i} className="flex gap-8 items-center hover:text-[var(--accent-acid)] hover:[text-shadow:0_0_20px_#CCFF00] transition-all duration-300 cursor-default">
-            {children} <span className="text-[var(--accent-acid)]">•</span>
-          </span>
-        ))}
-      </motion.div>
-    </div>
-  );
-}
 
 export default function TechStack() {
   return (
-    <section id="skills" className="relative py-40 overflow-hidden bg-[var(--background)]">
-      <div className="mb-24 px-6 md:px-12 lg:px-24">
-        <h2 className="font-sans text-sm tracking-[0.2em] uppercase font-bold text-[var(--accent-acid)] mb-4">Core Arsenal</h2>
-        <div className="w-[1px] h-12 bg-[var(--accent-acid)]"></div>
-      </div>
+    <section id="skills" className="relative py-32 px-6 md:px-12 lg:px-24 bg-[var(--background)]">
+      <div className="max-w-[1400px] mx-auto">
+        
+        {/* Header Section */}
+        <div className="mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+          <div className="max-w-xl">
+            <h2 className="font-display text-5xl md:text-6xl font-bold text-[var(--foreground)] uppercase tracking-tighter mb-4 select-none">
+              Tech Stack
+            </h2>
+            <p className="font-sans text-sm text-[var(--foreground)]/65 tracking-wide leading-relaxed">
+              Languages, frameworks, and databases I use to design and build digital tools.
+            </p>
+          </div>
+          <div className="hidden md:block select-none pointer-events-none opacity-85">
+            <AsciiWave speed={0.03} />
+          </div>
+        </div>
 
-      <div className="flex flex-col gap-4 transform -rotate-3 scale-110">
-        <MarqueeItem direction={1}>
-          {skills.slice(0, 5).join(" ")}
-        </MarqueeItem>
-        <MarqueeItem direction={-1}>
-          {skills.slice(5, 10).join(" ")}
-        </MarqueeItem>
+        {/* Tech Logos Flex Wrap */}
+        <div className="flex flex-wrap gap-x-8 gap-y-8 md:gap-x-12 md:gap-y-12 items-center justify-start mt-12">
+          {technologies.map((tech) => {
+            const Icon = tech.icon;
+            return (
+              <div 
+                key={tech.name}
+                className="group flex items-center gap-3 cursor-default select-none transition-transform duration-300 hover:-translate-y-1"
+              >
+                <div className="p-3 bg-[var(--foreground)]/[0.02] text-[var(--foreground)]/50 group-hover:text-[var(--accent)] transition-colors duration-300 flex items-center justify-center">
+                  <Icon size={32} />
+                </div>
+                <span className="font-mono text-xs uppercase tracking-widest text-[var(--foreground)]/40 group-hover:text-[var(--foreground)] transition-colors duration-300 font-bold">
+                  <AsciiTextScramble text={tech.name} triggerOn="hover" />
+                </span>
+              </div>
+            );
+          })}
+        </div>
+
       </div>
     </section>
   );

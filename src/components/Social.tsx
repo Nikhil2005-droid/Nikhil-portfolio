@@ -1,17 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FiGithub, FiLinkedin, FiArrowUpRight } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiMail, FiArrowUpRight } from "react-icons/fi";
+import { AsciiTextScramble } from "./AsciiEffects";
 
 const socials = [
   {
+    id: "email",
+    label: "Email",
+    handle: "nikhilgorremuchu05@gmail.com",
+    description: "Inquiries & project proposals",
+    icon: FiMail,
+    url: "https://mail.google.com/mail/?view=cm&fs=1&to=nikhilgorremuchu05@gmail.com",
+  },
+  {
     id: "github",
     label: "GitHub",
-    handle: "@nikhilgorremuchu",
+    handle: "@Nikhil2005-droid",
     description: "Open source contributions & personal projects",
     icon: FiGithub,
-    url: "https://github.com/",
-    color: "#CCFF00",
+    url: "https://github.com/Nikhil2005-droid",
   },
   {
     id: "linkedin",
@@ -19,35 +27,28 @@ const socials = [
     handle: "Nikhil Gorremuchu",
     description: "Professional network & career highlights",
     icon: FiLinkedin,
-    url: "https://linkedin.com/",
-    color: "#CCFF00",
+    url: "https://www.linkedin.com/in/nikhil-gorremuchu-b46b02399",
   },
 ];
 
 export default function Social() {
   return (
-    <section className="relative py-40 px-6 md:px-12 lg:px-24 border-t border-[var(--foreground)]/10 overflow-hidden">
+    <section className="relative py-32 px-6 md:px-12 lg:px-24 overflow-hidden bg-[var(--background)]">
       {/* Background label */}
       <motion.div 
         animate={{ rotate: [-90, -85, -90] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -left-8 top-1/2 -translate-y-1/2 font-display text-[8rem] font-bold text-[var(--foreground)]/3 uppercase select-none pointer-events-none whitespace-nowrap tracking-tighter origin-center"
+        className="absolute -left-8 top-1/2 -translate-y-1/2 font-display text-[8rem] font-bold text-[var(--foreground)]/[0.02] uppercase select-none pointer-events-none whitespace-nowrap tracking-tighter origin-center"
       >
         Connect
       </motion.div>
 
       <div className="max-w-7xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans text-xs uppercase tracking-[0.3em] font-bold text-[var(--accent-acid)] mb-6"
-        >
+        <h2 className="font-display text-5xl md:text-6xl font-bold text-[var(--foreground)] uppercase tracking-tighter mb-4 select-none">
           Find Me Online
-        </motion.h2>
+        </h2>
 
-        <div className="flex flex-col gap-0">
+        <div className="flex flex-col gap-4">
           {socials.map((social, index) => (
             <motion.a
               key={social.id}
@@ -59,21 +60,21 @@ export default function Social() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
               whileHover="hover"
-              className="group flex flex-col md:flex-row md:items-center justify-between border-b border-[var(--foreground)]/10 py-10 gap-6 cursor-pointer"
+              className="group flex flex-col md:flex-row md:items-center justify-between py-8 gap-6 cursor-pointer select-none"
             >
               {/* Left: Icon + Name */}
               <div className="flex items-center gap-6">
                 <motion.div
                   variants={{
                     hover: {
-                      backgroundColor: "var(--accent-acid)",
-                      color: "#050505",
+                      backgroundColor: "var(--accent)",
+                      color: "var(--background)",
                       rotate: 45,
                       scale: 1.1,
                     },
                   }}
                   transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-16 h-16 border border-[var(--foreground)]/20 flex items-center justify-center text-[var(--foreground)] transition-colors duration-300"
+                  className="w-16 h-16 bg-[var(--foreground)]/[0.02] flex items-center justify-center text-[var(--foreground)] transition-colors duration-300"
                 >
                   <social.icon size={28} />
                 </motion.div>
@@ -82,11 +83,11 @@ export default function Social() {
                   <motion.h3
                     variants={{ hover: { x: 8 } }}
                     transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tighter text-[var(--foreground)] group-hover:text-[var(--accent-acid)] transition-colors duration-300"
+                    className="font-display text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tighter text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors duration-300"
                   >
-                    {social.label}
+                    <AsciiTextScramble text={social.label} triggerOn="hover" />
                   </motion.h3>
-                  <p className="font-mono text-sm text-[var(--foreground)]/40 mt-1">{social.handle}</p>
+                  <p className="font-mono text-xs text-[var(--foreground)]/40 mt-1">{social.handle}</p>
                 </div>
               </div>
 
@@ -99,7 +100,7 @@ export default function Social() {
                   variants={{ hover: { x: 8, y: -8, rotate: 0 } }}
                   initial={{ rotate: 45 }}
                   transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-12 h-12 rounded-full border border-[var(--foreground)]/20 flex items-center justify-center group-hover:bg-[var(--accent-acid)] group-hover:border-[var(--accent-acid)] group-hover:text-black transition-all duration-300 flex-shrink-0"
+                  className="w-12 h-12 rounded-full bg-[var(--foreground)]/[0.02] flex items-center justify-center group-hover:bg-[var(--accent)] group-hover:text-[var(--background)] transition-all duration-300 flex-shrink-0"
                 >
                   <FiArrowUpRight size={20} />
                 </motion.div>
@@ -111,3 +112,5 @@ export default function Social() {
     </section>
   );
 }
+
+

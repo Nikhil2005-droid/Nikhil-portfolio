@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { AsciiCube3D } from "./AsciiEffects";
 
 export default function About() {
   const ref = useRef<HTMLElement>(null);
@@ -10,44 +11,27 @@ export default function About() {
     offset: ["start end", "end start"],
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [100, -50]);
+  const y1 = useTransform(scrollYProgress, [0, 1], [80, -40]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <section id="about" ref={ref} className="relative py-40 px-6 md:px-12 lg:px-24">
+    <section id="about" ref={ref} className="relative py-32 px-6 md:px-12 lg:px-24 bg-[var(--background)]">
       <motion.div style={{ opacity }} className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row justify-between gap-16 lg:gap-24">
         
-        <motion.div style={{ y: y1 }} className="lg:w-1/2">
-          <h2 className="font-display text-5xl md:text-7xl font-bold leading-[0.9] text-[var(--foreground)] uppercase">
-            Logic & <br />
-            <span className="text-[var(--accent-acid)]">Aesthetics.</span>
-          </h2>
-          <div className="mt-8 flex gap-8">
-            <motion.div 
-              animate={{ y: [0, -10, 0] }} 
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="flex flex-col gap-1"
-            >
-              <span className="font-display text-5xl font-bold text-[var(--foreground)]">03+</span>
-              <span className="font-sans uppercase tracking-[0.2em] text-xs font-bold text-[var(--accent-muted)]">Years Exp</span>
-            </motion.div>
-            <motion.div 
-              animate={{ y: [0, -10, 0] }} 
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="flex flex-col gap-1"
-            >
-              <span className="font-display text-5xl font-bold text-[var(--accent-acid)]">∞</span>
-              <span className="font-sans uppercase tracking-[0.2em] text-xs font-bold text-[var(--accent-muted)]">Precision</span>
-            </motion.div>
+        <motion.div style={{ y: y1 }} className="lg:w-1/2 flex flex-col justify-center">
+          {/* Rotating 3D ASCII Cube */}
+          <div className="w-full max-w-[320px]">
+            <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--foreground)]/40 block mb-2 font-bold">// 3D Matrix Projection</span>
+            <AsciiCube3D size={12} />
           </div>
         </motion.div>
 
-        <div className="lg:w-1/2 flex flex-col gap-8 font-sans text-lg md:text-2xl font-medium leading-snug text-[var(--foreground)]/80">
+        <div className="lg:w-1/2 flex flex-col gap-8 font-sans text-lg md:text-2xl font-medium leading-snug text-[var(--foreground)]/80 justify-center">
           <p>
-            I am a Computer Science student and Software Application Developer. Code is not just a tool for function; it is a medium for high-end digital craftsmanship.
+            I am a Computer Science student who writes code. I build software because I enjoy creating things that are clean, useful, and work well.
           </p>
           <p>
-            I build fluid, high-performance applications that don't just work—they feel expensive, deliberate, and perfectly choreographed. No templates, no compromises.
+            I build native mobile apps and responsive web tools using Flutter, React, Node.js, and MongoDB. I focus on keeping layouts simple and code easy to maintain.
           </p>
         </div>
 
@@ -55,3 +39,4 @@ export default function About() {
     </section>
   );
 }
+

@@ -6,10 +6,11 @@ import Projects from "@/components/Projects";
 import Social from "@/components/Social";
 import Contact from "@/components/Contact";
 import SplashScreen from "@/components/SplashScreen";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="relative w-full overflow-hidden bg-[var(--background)] text-[var(--foreground)] selection:bg-[var(--foreground)] selection:text-[var(--background)]">
+    <main className="relative w-full overflow-hidden bg-[var(--background)] text-[var(--foreground)] selection:bg-[var(--accent)] selection:text-white">
       {/* Splash Screen */}
       <SplashScreen />
 
@@ -22,6 +23,11 @@ export default function Home() {
       <Projects />
       <Social />
       <Contact />
+      
+      {/* Animated Footer */}
+      <Footer />
     </main>
   );
 }
+
+
